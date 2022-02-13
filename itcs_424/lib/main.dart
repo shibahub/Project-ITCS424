@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Route Push Demo',
+      title: 'Pet mark',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,7 +32,14 @@ class FirstRoute extends StatelessWidget {
         title: const Text('PetMark'),
       ),
       body: Center(
-        child: Row(children: [
+         child: Container(
+          padding: const EdgeInsets.all(80.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+          Image(image:AssetImage('img/shiba.png'),
+            height: 400,
+            width: 400, ),
           RaisedButton(child: Text('Find pet service'),
           onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondRoute())),),
           RaisedButton(child: Text('Petmark shop'),
@@ -40,6 +49,7 @@ class FirstRoute extends StatelessWidget {
           
           ],
         ),
+        )
       ) 
     );
   }
