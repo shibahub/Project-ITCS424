@@ -37,14 +37,29 @@ class FirstRoute extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          Image(image:AssetImage('img/shiba.png'),
-            height: 400,
-            width: 400, ),
-          RaisedButton(child: Text('Find pet service'),
+              Flexible(
+              flex:2,
+              child: Image(image: AssetImage('img/shiba.png')),
+            ),
+          ElevatedButton(child: Text('Find pet service'),
+          style: ElevatedButton.styleFrom(
+                  primary: Colors.yellow,
+                  fixedSize: Size(200, 35),
+                  
+                ),
           onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondRoute())),),
-          RaisedButton(child: Text('Petmark shop'),
+          ElevatedButton(child: Text('Petmark shop'),
+          style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
+                  fixedSize: Size(200, 35),
+                  
+                ),
           onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const thirdRoute())),),
-          RaisedButton(child: Text('login'),
+          ElevatedButton(child: Text('login'),
+          style: ElevatedButton.styleFrom(
+                  primary: Colors.black,
+                  fixedSize: Size(200, 35),
+                ),
           onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const loginRoute())),),
           
           ],
@@ -108,7 +123,7 @@ class loginRoute extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Welcome',
+                'Login',
                 style: Theme.of(context).textTheme.headline1,
               ),
               TextFormField(
@@ -131,7 +146,7 @@ class loginRoute extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstRoute()));
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow,
+                  primary: Colors.red
                 ),
               )
             ],
