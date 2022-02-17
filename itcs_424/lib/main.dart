@@ -49,7 +49,7 @@ class FirstRoute extends StatelessWidget {
                   fixedSize: Size(200, 35),
                   
                 ),
-          onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondRoute())),),
+          onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SecondRoute())),),
           ElevatedButton(child: Text('Petmark shop'),
           style: ElevatedButton.styleFrom(
                   primary: Colors.red,
