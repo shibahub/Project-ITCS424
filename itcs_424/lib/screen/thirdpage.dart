@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:itcs_424/main.dart';
 import 'package:itcs_424/screen/detail.dart';
 import 'package:itcs_424/screen/overview.dart';
+import 'package:itcs_424/screen/test.dart';
 
 class thirdRoute extends StatelessWidget {
   const thirdRoute({Key? key}) : super(key: key);
@@ -25,6 +26,8 @@ class thirdRoute extends StatelessWidget {
       ),
       // 6
       home: const MyHomePage(title: 'PetMarkShop '),
+      
+      
       
     );
   }
@@ -62,42 +65,39 @@ class _MyHomePageState extends State<MyHomePage> {
       // 3
       body: SafeArea(
         // 4
-        child: ListView.builder(
-          // 5
-          itemCount: Recipe.samples.length,
-          // 6
-          itemBuilder: (BuildContext context, int index) {
-            // 7
-            // TODO: Add GestureDetector
-            // 7
-            return GestureDetector(
-              // 8
-              onTap: () {
-                // 9
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      // 10
-                      // TODO: Replace return with return RecipeDetail()
-                      return RecipeDetail(recipe: Recipe.samples[index]);
-
-                    },
-                  ),
-                );
-              },
-              // 11
-              child: buildRecipeCard(Recipe.samples[index]),
+        child: Container(
+          child:Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Search for more item',
+                )
+              ),
+              ElevatedButton(
+                child: const Text('Search'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Result()));
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red
+                ),
+              ),
               
-            );
-            return buildRecipeCard(Recipe.samples[index]);
+              ElevatedButton(
+                child: const Text("Return to Home page"),
+                onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstRoute()));
+              },
+              )
+          ],
+          )
+          // 5
 
-
-          },
         ),
 
       ),
     );
+    
   }
   Widget buildRecipeCard(Recipe recipe) {
     // 1
@@ -115,4 +115,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  
 }

@@ -43,13 +43,6 @@ class FirstRoute extends StatelessWidget {
               flex:2,
               child: Image(image: AssetImage('img/shiba.png')),
             ),
-          ElevatedButton(child: Text('Find pet service'),
-          style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow,
-                  fixedSize: Size(200, 35),
-                  
-                ),
-          onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SecondRoute())),),
           ElevatedButton(child: Text('Petmark shop'),
           style: ElevatedButton.styleFrom(
                   primary: Colors.red,
@@ -57,7 +50,16 @@ class FirstRoute extends StatelessWidget {
                   
                 ),
           onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const thirdRoute())),),
-          ElevatedButton(child: Text('login'),
+          
+          ElevatedButton(child: Text('Regrister'),
+          style: ElevatedButton.styleFrom(
+                  primary: Colors.yellow,
+                  fixedSize: Size(200, 35),
+                  
+                ),
+          onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SecondRoute())),),
+          
+          ElevatedButton(child: Text('Login'),
           style: ElevatedButton.styleFrom(
                   primary: Colors.black,
                   fixedSize: Size(200, 35),

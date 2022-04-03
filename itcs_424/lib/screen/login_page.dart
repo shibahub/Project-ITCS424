@@ -16,7 +16,7 @@ class loginRoute extends StatelessWidget {
             children: [
               Text(
                 'Login',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headline2,
               ),
               TextFormField(
                 decoration: const InputDecoration(
