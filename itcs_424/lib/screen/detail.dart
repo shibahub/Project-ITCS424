@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:itcs_424/screen/overview.dart';
 
@@ -19,6 +21,8 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   // TODO: Add _sliderVal here
   int _sliderVal = 1;
+
+  get blue => null;
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +73,14 @@ class _ProductDetailState extends State<ProductDetail> {
               ),
             ),
             // TODO: Add Slider() here
-            
+          
             Slider(
               // 10
               min: 0,
               max: 10,
               divisions: 9,
               // 11
-              label: '${_sliderVal } items',
+              label: '${_sliderVal * widget.product.price} BAHT',
               // 12
               value: _sliderVal.toDouble(),
               // 13
