@@ -1,119 +1,154 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:itcs_424/main.dart';
 import 'package:itcs_424/screen/detail.dart';
 import 'package:itcs_424/screen/overview.dart';
-import 'package:itcs_424/screen/test.dart';
+import 'package:itcs_424/screen/result.dart';
 
-class thirdRoute extends StatelessWidget {
-  const thirdRoute({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  // 1
+class Search extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    // 2
-    final ThemeData theme = ThemeData();
-    // 3
-    return MaterialApp(
-      // 4
-      title: 'PetMarkShop',
-      // 5
-      theme: theme.copyWith(
-        colorScheme: theme.colorScheme.copyWith(
-          primary: Colors.blue,
-          secondary: Colors.blue,
-        ),
-      ),
-      // 6
-      home: const MyHomePage(title: 'PetMarkShop '),
-      
-      
-      
-    );
+  _Search createState() => _Search();
+}
+
+class _Search extends State<Search> {
+
+  List<Product>Pet_product_list= Product.samples;
+  List<Product>?ProductSearch;
+  final FocusNode _textFocusNode = FocusNode();
+  TextEditingController? _textEditingController = TextEditingController();
+  @override
+  void dispose() {
+    _textFocusNode.dispose();
+    _textEditingController!.dispose();
+    super.dispose();
   }
 
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // 1
     return Scaffold(
-      // 2
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      // 3
-      body: SafeArea(
-        // 4
-        child: Container(
-          child:Column(
-            children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Search for more item',
-                )
-              ),
-              ElevatedButton(
-                child: const Text('Search'),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Result()));
+        appBar: AppBar(
+            backgroundColor: Colors.blue,
+            title: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20)),
+              child: TextField(
+                controller: _textEditingController,
+                focusNode: _textFocusNode,
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    hintText: 'Search.....',
+                    contentPadding: EdgeInsets.all(15)),
+                onChanged: (value) {
+                  setState(() {
+                    ProductSearch = Pet_product_list
+                        .where(
+                            (element) => element.name.toLowerCase().contains(value.toLowerCase()))
+                        .toList();
+                    if (_textEditingController!.text.isNotEmpty &&
+                        ProductSearch!.length == 0) {
+                      print('foodListSearch length ${ProductSearch!.length}');
+                    }
+                  });
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.red
-                ),
               ),
-              
-              ElevatedButton(
-                child: const Text("Return to Home page"),
-                onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstRoute()));
-              },
+            ),
+            actions: [
+              TextButton(
+                onPressed: (){
+                  ProductSearch?.clear();
+                  _textEditingController!.clear();
+                  setState((){
+                    _textEditingController!.text='';
+                  });
+                },
+              child: Icon(
+                Icons.close,
+                color: Colors.black,
+              ),
+                )
+            ],
+            ),
+        body: _textEditingController!.text.isNotEmpty &&
+                ProductSearch!.length == 0
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        /*child: Icon(
+                          Icons.search_off,
+                          size: 160,
+                        ),*/
+                        child: Ink.image(image: AssetImage('img/shibaNO.jpg'),
+                        height: 300,
+                        )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'No results found </3,\nPlease try different keyword ',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               )
-          ],
-          )
-          // 5
+            : ListView.builder(
+                itemCount: _textEditingController!.text.isNotEmpty
+                    ? ProductSearch!.length
+                    : Pet_product_list.length,
+                itemBuilder: (ctx, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Row(
+                        children:[
+                        ElevatedButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Builder(
+                            builder: (context) {
+                              return  ProductDetail(product: _textEditingController!.text.isNotEmpty
+                              ? ProductSearch![index]
+                              : Pet_product_list[index]);
+                            }
+                          )),);
+                  
+                        }, 
+                          child: Icon(Icons.pets),),
+                        /* CircleAvatar(
+                            child: Icon(Icons.pets),
+                          ),*/
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(_textEditingController!.text.isNotEmpty
+                              ? ProductSearch![index].name
+                              : Pet_product_list[index].name),
+                          
+                          Ink.image(image: AssetImage(_textEditingController!.text.isNotEmpty
+                              ? ProductSearch![index].imageUrl
+                              : Pet_product_list[index].imageUrl),
 
-        ),
-
-      ),
-    );
-    
+                            height: 100,
+                            width: 100,
+                            fit:BoxFit.cover,
+                            ),
+                        ],)
+                        
+                        ,
+                    )
+                  );
+                }));
   }
-  Widget buildRecipeCard(Recipe recipe) {
-    // 1
-    return Card(
-      // 2
-      child: Column(
-        // 3
-        children: <Widget>[
-          // 4
-          Image(image: AssetImage(recipe.imageUrl)),
-          // 5
-          Text(recipe.label),
-        ],
-      ),
-    );
-  }
-
-  
 }

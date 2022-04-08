@@ -49,7 +49,7 @@ class FirstRoute extends StatelessWidget {
                   fixedSize: Size(200, 35),
                   
                 ),
-          onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) => const thirdRoute())),),
+          onPressed:() => Navigator.push(context, MaterialPageRoute(builder: (context) =>  Search())),),
           
           ElevatedButton(child: Text('Regrister'),
           style: ElevatedButton.styleFrom(

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:itcs_424/screen/overview.dart';
 
-class RecipeDetail extends StatefulWidget {
-  final Recipe recipe;
+class ProductDetail extends StatefulWidget {
+  final Product product;
 
-  const RecipeDetail({
+  const ProductDetail({
     Key? key,
-    required this.recipe,
+    required this.product,
   }) : super(key: key);
 
   @override
-  _RecipeDetailState createState() {
-    return _RecipeDetailState();
+  _ProductDetailState createState() {
+    return _ProductDetailState();
   }
 }
 
 // TODO: Add _RecipeDetailState here
-class _RecipeDetailState extends State<RecipeDetail> {
+class _ProductDetailState extends State<ProductDetail> {
   // TODO: Add _sliderVal here
   int _sliderVal = 1;
 
@@ -25,7 +25,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
     // 1
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.recipe.label),
+        title: Text(widget.product.name),
       ),
       // 2
       body: SafeArea(
@@ -37,7 +37,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
               height: 300,
               width: double.infinity,
               child: Image(
-                image: AssetImage(widget.recipe.imageUrl),
+                image: AssetImage(widget.product.imageUrl),
               ),
             ),
             // 5
@@ -46,7 +46,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
             ),
             // 6
             Text(
-              widget.recipe.label,
+              widget.product.name,
               style: const TextStyle(fontSize: 18),
             ),
             // TODO: Add Expanded
@@ -55,18 +55,21 @@ class _RecipeDetailState extends State<RecipeDetail> {
               // 8
               child: ListView.builder(
                 padding: const EdgeInsets.all(7.0),
-                itemCount: widget.recipe.ingredients.length,
+                itemCount: widget.product.decription.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final ingredient = widget.recipe.ingredients[index];
+                  final Decription = widget.product.decription[index];
+                  final Price = widget.product.price;
                   // 9
                   // TODO: Add ingredient.quantity
                   return Text(
-                      ' ${ingredient.measure} ${ingredient.name}');
+                      ' ${Decription.measure} : ${Decription.name} \n Price: ${Price} Baht');
+                      
 
                 },
               ),
             ),
             // TODO: Add Slider() here
+            
             Slider(
               // 10
               min: 0,

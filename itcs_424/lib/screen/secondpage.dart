@@ -18,7 +18,7 @@ class SecondRoute extends StatelessWidget {
             children: [
               Text(
                 'Regristation',
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.headline4,
               ),
               TextFormField(
                 decoration: const InputDecoration(
