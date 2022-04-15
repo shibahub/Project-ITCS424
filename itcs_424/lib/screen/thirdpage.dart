@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:itcs_424/main.dart';
 import 'package:itcs_424/screen/detail.dart';
 import 'package:itcs_424/screen/overview.dart';
+import 'package:itcs_424/screen/cart-demo.dart';
+//import 'package:itcs_424/screen/demo/cart.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -30,10 +32,12 @@ class _Search extends State<Search> {
         appBar: AppBar(
             backgroundColor: Colors.blue,
             title: Container(
+              
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20)),
               child: TextField(
+                
                 controller: _textEditingController,
                 focusNode: _textFocusNode,
                 cursorColor: Colors.black,
@@ -53,7 +57,7 @@ class _Search extends State<Search> {
                         .toList();
                     if (_textEditingController!.text.isNotEmpty &&
                         ProductSearch!.length == 0) {
-                      print('foodListSearch length ${ProductSearch!.length}');
+                      print('Product Search length ${ProductSearch!.length}');
                     }
                   });
                 },
@@ -72,12 +76,18 @@ class _Search extends State<Search> {
                 Icons.close,
                 color: Colors.black,
               ),
-                )
-            ],
-            ),
+                ),
+
+                IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart, size: 30,
+                    ), 
+                    onPressed:()=>  Navigator.push(context, MaterialPageRoute(builder: (context) =>  Cart())))
+                    ]
+        ),
         body: _textEditingController!.text.isNotEmpty &&
                 ProductSearch!.length == 0
-            ? Center(
+            ? Center( 
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
@@ -148,6 +158,7 @@ class _Search extends State<Search> {
                         ,
                     )
                   );
-                }));
+                })
+                );
   }
 }

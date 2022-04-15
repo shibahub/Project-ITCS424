@@ -1,8 +1,6 @@
 class Product {
   String name;
   String imageUrl;
-  // TODO: Add servings and ingredients here
-  int servings;
   List<Decription> decription;
   int price;
 
@@ -11,7 +9,6 @@ class Product {
   Product(
       this.name,
       this.imageUrl,
-      this.servings,
       this.decription,
       this.price,
       );
@@ -21,7 +18,6 @@ class Product {
     Product(
       'dog bone',
       'img/dog bone.jpg',
-      0,
       [
         Decription('weigth', '500 mg',),
         Decription('material', 'rubber',),
@@ -31,7 +27,6 @@ class Product {
     Product(
       'smart hard wet food',
       'img/smart heart wet.jpg',
-      0,
       [
         Decription('material', 'Salt: 0.5 mg\n meat: 98% ',),
         Decription('weigth', '500 mg',),
@@ -41,7 +36,6 @@ class Product {
     Product(
       'Dolls',
       'img/toys.jpg',
-      0,
       [
         Decription('material', 'cotton ',),
       ],
@@ -50,7 +44,6 @@ class Product {
     Product(
       'Pedigree',
       'img/pedigree.jpg',
-      0,
       [
         Decription('material', 'chicken 98% ',),
         Decription('weigth', '10 kg',),
@@ -61,7 +54,7 @@ class Product {
     Product(
       'Pedigree wet food',
       'img/pedigree wet.jpg',
-      0,
+ 
       [
         Decription('material', 'pork 98% ',),
         Decription('weigth', '500 mg',),
@@ -72,7 +65,7 @@ class Product {
     Product(
       'smart hard',
       'img/smart heart.jpg',
-      0,
+
       [
         Decription('material', 'chicken 95% ',),
         Decription('weigth', '20 kg',),
@@ -80,49 +73,51 @@ class Product {
       ],
       700,
     ),
-    Product('Water and Food Bowls', 'img/Bowls.jpg', 0,  [
+    Product('Water and Food Bowls', 'img/Bowls.jpg',  [
         Decription('material', 'Plastic',),
       ],200,),
-    Product('Leash and Collar', 'img/Leash.jpg', 0,  [
+    Product('Leash and Collar', 'img/Leash.jpg',   [
         Decription('material', 'Leather ',),
 
       ],150,),
-    Product('Pet First Aid Kit', 'img/FirstAid.jpg', 0,  [
+    Product('Pet First Aid Kit', 'img/FirstAid.jpg',   [
         Decription('Purpose', 'cure',),
 
       ],120,),
-    Product('Pet Bed', 'img/Pet Bed.jpg', 0,  [
+    Product('Pet Bed', 'img/Pet Bed.jpg',   [
         Decription('material', 'silk',),
 
       ],540,),
-    Product('Pets Toys', 'img/Pet toys.jpg', 0,  [
+    Product('Pets Toys', 'img/Pet toys.jpg',   [
         Decription('material', 'Rope',),
 
       ],200),
-    Product('Treats', 'img/Treats.jpg', 0,  [
+    Product('Treats', 'img/Treats.jpg',   [
         Decription('material', 'chicken 95% ',),
         Decription('weigth', '20 kg',),
 
       ],80),
-    Product('Pet Grooming Brush', 'img/Brush.jpg', 0,  [
+    Product('Pet Grooming Brush', 'img/Brush.jpg',   [
         Decription('material', 'silk and Pastic ',),
 
       ],120,),
-    Product('Toothbrush', 'img/Toothbrush.jpg', 0,  [
+    Product('Toothbrush', 'img/Toothbrush.jpg',   [
         Decription('material', 'silk',),
 
       ],80), 
-    Product('Flea Preventative', 'img/Flea Prevent.jpg', 0,  [
+    Product('Flea Preventative', 'img/Flea Prevent.jpg',   [
         Decription('Purpose', ' Cleaner ',),
       
 
       ],120),
-    Product('Stain and Odor Remover', 'img/Stain remover.jpg', 0,  [
+    Product('Stain and Odor Remover', 'img/Stain remover.jpg',   [
         Decription('Purpose', 'Cleaner',),
 
       ],200),
 
   ];
+
+  findById(String productId) {}
 
 }
 
