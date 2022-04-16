@@ -12,18 +12,14 @@ class CartItem {
   final int price;
   final int quantity;
 
-  CartItem(
-      
-        { 
-         required this.name,
-         required this.imageUrl,
-         //required this.decription,
-         required this.price,
-         required this.quantity,
-        }
-        );
-   static List<CartItem> Cart_product =[]; 
-
+  CartItem({
+    required this.name,
+    required this.imageUrl,
+    //required this.decription,
+    required this.price,
+    required this.quantity,
+  });
+  static List<CartItem> Cart_product = [];
 }
 
 class Cart_detail with ChangeNotifier {
@@ -38,12 +34,18 @@ class Cart_detail with ChangeNotifier {
   }
 
   //get name => null;
-  void addToCart(String name, String imageUrl,  int price, int quantity){
+  void addToCart(String name, String imageUrl, int price, int quantity) {
     print('Adding "$name" to cart...');
     String item = name;
-    if(name!=null){
+    if (name != null && quantity != 0) {
       print('sucess to add');
-      CartItem.Cart_product.insert(0, CartItem(name: name, imageUrl: imageUrl, price: price, quantity: quantity));
+      CartItem.Cart_product.insert(
+          0,
+          CartItem(
+              name: name,
+              imageUrl: imageUrl,
+              price: price,
+              quantity: quantity));
       /*_items.update(name, (value) => CartItem
         (
           name: name, 
@@ -51,12 +53,21 @@ class Cart_detail with ChangeNotifier {
           //decription: decription, 
           price: price, 
           quantity: quantity,));*/
-    }
-    else{
+    } else {
       print('Flase to add');
     }
   }
- // void removeFromCart()
+
+  void removeProduct(String name, String imageUrl, int price, int quantit) {
+    print('Removing "${name}"......');
+    if (name != null) {
+      CartItem(name: '', imageUrl: '', price: 0, quantity: 0);
+      print('remove sucess');
+    } else {
+      print('False to remove');
+    }
+  }
+  // void removeFromCart()
   /*void addItem(String name, String imageUrl, List<Decription> description , int price, int quantity) {
     if (_items.containsKey(name)) {
       _items.update(
@@ -122,14 +133,13 @@ class Cart_detail with ChangeNotifier {
   }
   */
 }
-class Decription {
 
+class Decription {
   String measure;
   String name;
 
   Decription(
-      this.measure,
-      this.name,
-      );
-
+    this.measure,
+    this.name,
+  );
 }

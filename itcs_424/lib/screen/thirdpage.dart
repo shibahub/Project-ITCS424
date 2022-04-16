@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:itcs_424/main.dart';
 import 'package:itcs_424/screen/detail.dart';
 import 'package:itcs_424/screen/overview.dart';
-import 'package:itcs_424/screen/cart-demo.dart';
+import 'package:itcs_424/screen/cart.dart';
 //import 'package:itcs_424/screen/demo/cart.dart';
 
 class Search extends StatefulWidget {
