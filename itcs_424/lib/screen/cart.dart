@@ -1,5 +1,4 @@
-import 'dart:html';
-import 'dart:ui';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,12 +45,13 @@ class _Cart extends State<Cart> {
           children: <Widget>[
             Expanded(
               child: ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 100),
                   itemCount: _textEditingController!.text.isNotEmpty
                       ? ProductSearch!.length
                       : Product_cart.length,
                   itemBuilder: (ctx, index) {
-                    return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                    return Container(
+                        //padding: const EdgeInsets.all(8.0),
                         child: Container(
                           child: Flexible(
                             child: Row(
@@ -59,7 +59,7 @@ class _Cart extends State<Cart> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                const Icon(Icons.pets_sharp),
+                                //const Icon(Icons.pets_sharp),
                                 Ink.image(
                                   image: AssetImage(
                                       _textEditingController!.text.isNotEmpty
@@ -76,22 +76,19 @@ class _Cart extends State<Cart> {
                                           ': Price ${Product_cart[index].price} * ${Product_cart[index].quantity} = ${Product_cart[index].price * Product_cart[index].quantity} Baht',
                                 overflow: TextOverflow.ellipsis,
                                 ),
-                                FloatingActionButton(
-                                  onPressed: () {
-                                    //final cart = widget.product();
-                                    //Cart_detail.addItem();
-                                    //final List<Decription> desciption = widget.product.decription;
-                                    final _Cart_detail = new Cart_detail();
+                                ElevatedButton.icon(onPressed: (){
+                                  final _Cart_detail = new Cart_detail();
                                     //_Cart_detail.addToCart(CartItem.Cart_product., widget.product.imageUrl, widget.product.price, _sliderVal );
                                     _Cart_detail.removeProduct(
                                         Product_cart[index].name,
                                         Product_cart[index].imageUrl,
                                         Product_cart[index].price,
-                                        Product_cart[index].quantity);
-                                  },
-                                  child: const Icon(Icons.cancel_outlined,
-                                      size: 30),
-                                )
+                                        Product_cart[index].quantity,
+                                        index);
+                                }, icon: const Icon(Icons.cancel_outlined,
+                                      size: 30), label: Text('')),
+                               
+                                
                               ],
                             ),
                           ),
@@ -99,7 +96,25 @@ class _Cart extends State<Cart> {
                         ));
                   }),
             ),
-            const Text("Total price"),
+            SizedBox(
+            width: 1000,
+            height:50,
+            child: ColoredBox(color: Colors.blueAccent, 
+              child: Column(children: [
+              const Text("Total Price:",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+              Text((() {
+              int totalPrice = 0;
+              for (var i = 0; i < Product_cart.length; i++) {
+                totalPrice += Product_cart[i].price;
+              }
+            
+              return totalPrice.toString() + " Baht";
+            })(),style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            )
+              ],),
+              ),
+          ),
+            /*const Text("Total Price"),
             Text((() {
               int totalPrice = 0;
               for (var i = 0; i < Product_cart.length; i++) {
@@ -108,15 +123,15 @@ class _Cart extends State<Cart> {
               
               return totalPrice.toString() + " Baht";
             })(),
-            )
-            ,
+            ),*/
+          
           ],
         ),
         //extendBody: Total_amout,
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.push(
               context, MaterialPageRoute(builder: (context) => Payment())),
-          child: const Icon(Icons.payments_outlined),
+          child: const Icon(Icons.payments_outlined, size: 20, color: Colors.white,) ,
         ));
   }
 }

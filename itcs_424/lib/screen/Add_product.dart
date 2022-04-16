@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:itcs_424/screen/cart.dart';
 
 //import 'package:itcs_424/screen/demo/cart_item.dart';
 
@@ -58,11 +59,13 @@ class Cart_detail with ChangeNotifier {
     }
   }
 
-  void removeProduct(String name, String imageUrl, int price, int quantit) {
+  void removeProduct(String name, String imageUrl, int price, int quantit, int index) {
     print('Removing "${name}"......');
-    if (name != null) {
-      CartItem(name: '', imageUrl: '', price: 0, quantity: 0);
-      print('remove sucess');
+    if (name.isNotEmpty) {
+      CartItem.Cart_product.removeAt(0);
+      //CartItem.Cart_product.removeWhere(CartItem.Cart_product.);
+      //CartItem.Cart_product.remove(name);
+      print('remove sucess index ${index}');
     } else {
       print('False to remove');
     }
