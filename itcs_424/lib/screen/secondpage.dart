@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:itcs_424/main.dart';
 import 'package:flutter/material.dart';
+
 class SecondRoute extends StatelessWidget {
   const SecondRoute({Key? key}) : super(key: key);
 
@@ -42,10 +43,9 @@ class SecondRoute extends StatelessWidget {
                 obscureText: true,
               ),
               TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Date of birth',
-                )
-              ),
+                  decoration: const InputDecoration(
+                hintText: 'Date of birth',
+              )),
               TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Phone number',
@@ -57,11 +57,12 @@ class SecondRoute extends StatelessWidget {
               ElevatedButton(
                 child: const Text('Regrister'),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstRoute()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FirstRoute()));
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.red
-                ),
+                style: ElevatedButton.styleFrom(primary: Colors.red),
               )
             ],
           ),

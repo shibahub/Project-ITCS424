@@ -12,16 +12,20 @@ class Payment extends StatefulWidget {
   @override
   _Payment createState() => _Payment();
 }
-class _Payment extends State<Payment> {
 
-    @override
+class _Payment extends State<Payment> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Payment'),
-      ),
-      body: SafeArea(child: Center(child: Ink.image(image: const AssetImage('img/rickroll.JPG'), height: 300,),))
-    );
+        appBar: AppBar(
+          title: Text('Payment'),
+        ),
+        body: SafeArea(
+            child: Center(
+          child: Ink.image(
+            image: const AssetImage('img/rickroll.JPG'),
+            height: 300,
+          ),
+        )));
   }
 }
-

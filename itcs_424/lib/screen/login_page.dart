@@ -2,10 +2,11 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:itcs_424/main.dart';
+
 class loginRoute extends StatelessWidget {
   const loginRoute({Key? key}) : super(key: key);
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -35,11 +36,12 @@ class loginRoute extends StatelessWidget {
               ElevatedButton(
                 child: const Text('ENTER'),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FirstRoute()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FirstRoute()));
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.red
-                ),
+                style: ElevatedButton.styleFrom(primary: Colors.red),
               )
             ],
           ),

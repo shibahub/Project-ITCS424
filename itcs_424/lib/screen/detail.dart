@@ -1,7 +1,5 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:itcs_424/screen/Add_product.dart';
+import 'package:itcs_424/screen/Product_cart.dart';
 import 'package:itcs_424/screen/overview.dart';
 import 'package:provider/provider.dart';
 
@@ -24,17 +22,16 @@ class _ProductDetailState extends State<ProductDetail> {
   // TODO: Add _sliderVal here
   int _sliderVal = 1;
 
-
   @override
   Widget build(BuildContext context) {
     // 1
     //final cart = ProductDetail<Product>(context);
-   // final productId = ModalRoute.of(context)?.settings.arguments as String;
+    // final productId = ModalRoute.of(context)?.settings.arguments as String;
     //final loadedPdt = Provider.of<Product>(context).findById(productId);
-   // final cart = Provider.of<Cart>(context);
+    // final cart = Provider.of<Cart>(context);
     //final cart = CartItem(name: widget.product.name, imageUrl: widget.product.imageUrl , decription: widget.product.decription, price: widget.product.price, quantity: _sliderVal);
     final Price = widget.product.price;
-    const Total=0;
+    const Total = 0;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.product.name),
@@ -57,7 +54,7 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
             // 6
             Text(
-              widget.product.name,
+              'Product Name: ' + widget.product.name,
               style: const TextStyle(fontSize: 18),
             ),
 
@@ -68,12 +65,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 itemCount: widget.product.decription.length,
                 itemBuilder: (BuildContext context, int index) {
                   final Decription = widget.product.decription[index];
-                  
 
-                  return Text(
-                      ' ${Decription.measure} : ${Decription.name}');
-                      
-
+                  return Text(' ${Decription.measure} : ${Decription.name}');
                 },
               ),
             ),
@@ -83,16 +76,13 @@ class _ProductDetailState extends State<ProductDetail> {
                 padding: const EdgeInsets.all(7.0),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
-                //final Price = widget.product.price;
+                  //final Price = widget.product.price;
 
-                  return Text(
-                      ' Price :${Price} Baht <3');
-                      
-
+                  return Text(' Price :${Price} Baht <3');
                 },
               ),
             ),
-            
+
             Slider(
               // 10
               min: 0,
@@ -100,7 +90,7 @@ class _ProductDetailState extends State<ProductDetail> {
               divisions: 9,
               // 11
               label: '${_sliderVal * widget.product.price} BAHT',
-              
+
               // 12
               value: _sliderVal.toDouble(),
               // 13
@@ -112,23 +102,20 @@ class _ProductDetailState extends State<ProductDetail> {
               // 14
               activeColor: Colors.green,
               inactiveColor: Colors.black,
-             
             ),
 
 // edit here **********************************************************************************************************/
             FloatingActionButton(
-              onPressed: (){
-               //final cart = widget.product();
-               //Cart_detail.addItem();
-               //final List<Decription> desciption = widget.product.decription; 
-               final _Cart_detail= new  Cart_detail();
-               _Cart_detail.addToCart(widget.product.name, widget.product.imageUrl, widget.product.price, _sliderVal );
-                
+              onPressed: () {
+                //final cart = widget.product();
+                //Cart_detail.addItem();
+                //final List<Decription> desciption = widget.product.decription;
+                final _Cart_detail = new Cart_detail();
+                _Cart_detail.addToCart(widget.product.name,
+                    widget.product.imageUrl, widget.product.price, _sliderVal);
               },
-              child: Icon(
-                Icons.shopping_cart,
-                size:30),
-              )
+              child: Icon(Icons.shopping_cart, size: 30),
+            )
 //******************************************************************************************************************************* */
           ],
         ),
@@ -136,15 +123,13 @@ class _ProductDetailState extends State<ProductDetail> {
     );
   }
 }
-class Decription{
+
+class Decription {
   String measure;
   String name;
 
   Decription(
-      this.measure,
-      this.name,
-      );
-
-
+    this.measure,
+    this.name,
+  );
 }
-

@@ -14,9 +14,8 @@ class Search extends StatefulWidget {
 }
 
 class _Search extends State<Search> {
-
-  List<Product>Pet_product_list= Product.samples;
-  List<Product>?ProductSearch;
+  List<Product> Pet_product_list = Product.samples;
+  List<Product>? ProductSearch;
   final FocusNode _textFocusNode = FocusNode();
   TextEditingController? _textEditingController = TextEditingController();
   @override
@@ -32,12 +31,9 @@ class _Search extends State<Search> {
         appBar: AppBar(
             backgroundColor: Colors.blue,
             title: Container(
-              
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: TextField(
-                
                 controller: _textEditingController,
                 focusNode: _textFocusNode,
                 cursorColor: Colors.black,
@@ -51,10 +47,10 @@ class _Search extends State<Search> {
                     contentPadding: EdgeInsets.all(15)),
                 onChanged: (value) {
                   setState(() {
-                    ProductSearch = Pet_product_list
-                        .where(
-                            (element) => element.name.toLowerCase().contains(value.toLowerCase()))
-                        .toList();
+                    ProductSearch = Pet_product_list.where((element) => element
+                        .name
+                        .toLowerCase()
+                        .contains(value.toLowerCase())).toList();
                     if (_textEditingController!.text.isNotEmpty &&
                         ProductSearch!.length == 0) {
                       print('Product Search length ${ProductSearch!.length}');
@@ -65,43 +61,43 @@ class _Search extends State<Search> {
             ),
             actions: [
               TextButton(
-                onPressed: (){
+                onPressed: () {
                   ProductSearch?.clear();
                   _textEditingController!.clear();
-                  setState((){
-                    _textEditingController!.text='';
+                  setState(() {
+                    _textEditingController!.text = '';
                   });
                 },
-              child: Icon(
-                Icons.close,
-                color: Colors.black,
-              ),
+                child: Icon(
+                  Icons.close,
+                  color: Colors.black,
                 ),
-
-                IconButton(
+              ),
+              IconButton(
                   icon: Icon(
-                    Icons.shopping_cart, size: 30,
-                    ), 
-                    onPressed:()=>  Navigator.push(context, MaterialPageRoute(builder: (context) =>  Cart())))
-                    ]
-        ),
+                    Icons.shopping_cart,
+                    size: 30,
+                  ),
+                  onPressed: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Cart())))
+            ]),
         body: _textEditingController!.text.isNotEmpty &&
                 ProductSearch!.length == 0
-            ? Center( 
+            ? Center(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        /*child: Icon(
+                          padding: const EdgeInsets.all(8.0),
+                          /*child: Icon(
                           Icons.search_off,
                           size: 160,
                         ),*/
-                        child: Ink.image(image: AssetImage('img/shibaNO.jpg'),
-                        height: 300,
-                        )
-                      ),
+                          child: Ink.image(
+                            image: AssetImage('img/shibaNO.jpg'),
+                            height: 300,
+                          )),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -120,45 +116,48 @@ class _Search extends State<Search> {
                     : Pet_product_list.length,
                 itemBuilder: (ctx, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      child: Row(
-                        children:[
-                        ElevatedButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Builder(
-                            builder: (context) {
-                              return  ProductDetail(product: _textEditingController!.text.isNotEmpty
-                              ? ProductSearch![index]
-                              : Pet_product_list[index]);
-                            }
-                          )),);
-                  
-                        }, 
-                          child: Icon(Icons.pets),),
-                        /* CircleAvatar(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Builder(builder: (context) {
+                                            return ProductDetail(
+                                                product: _textEditingController!
+                                                        .text.isNotEmpty
+                                                    ? ProductSearch![index]
+                                                    : Pet_product_list[index]);
+                                          })),
+                                );
+                              },
+                              child: Icon(Icons.pets),
+                            ),
+                            /* CircleAvatar(
                             child: Icon(Icons.pets),
                           ),*/
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(_textEditingController!.text.isNotEmpty
-                              ? ProductSearch![index].name
-                              : Pet_product_list[index].name),
-                          
-                          Ink.image(image: AssetImage(_textEditingController!.text.isNotEmpty
-                              ? ProductSearch![index].imageUrl
-                              : Pet_product_list[index].imageUrl),
-
-                            height: 100,
-                            width: 100,
-                            fit:BoxFit.cover,
+                            SizedBox(
+                              width: 10,
                             ),
-                        ],)
-                        
-                        ,
-                    )
-                  );
-                })
-                );
+                            Text(_textEditingController!.text.isNotEmpty
+                                ? ProductSearch![index].name
+                                : Pet_product_list[index].name),
+                            Ink.image(
+                              image: AssetImage(
+                                  _textEditingController!.text.isNotEmpty
+                                      ? ProductSearch![index].imageUrl
+                                      : Pet_product_list[index].imageUrl),
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                      ));
+                }));
   }
 }
