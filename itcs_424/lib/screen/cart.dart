@@ -7,7 +7,7 @@ import 'package:itcs_424/screen/detail.dart';
 import 'package:itcs_424/screen/overview.dart';
 import 'package:itcs_424/screen/cart.dart';
 import 'package:itcs_424/screen/payment.dart';
-import 'package:itcs_424/screen/cartscrern.dart';
+import 'package:itcs_424/screen/cartscreen.dart';
 //import 'package:itcs_424/screen/demo/cart.dart';
 
 class Cart extends StatefulWidget {
